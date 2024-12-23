@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - OpenSourceSphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+        :root {
+            --bg-color: #fdf6e3; /* Light mode background color */
+            --text-color: #333;
+            --accent-color: #ccc;
+            --header-bg-color: #eee8d5;
+            --dark-mode-bg-color: #2f2f2f; /* Dark mode background color */
+            --dark-mode-text-color: #ddd;
+            --dark-mode-accent-color: #444;
+            --dark-mode-header-bg-color: #444;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive; /* Retro, gamified font */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .header {
+            background-color: var(--header-bg-color); /* Light brown header color */
+            color: var(--text-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+            box-shadow: 0 4px 2px -2px gray;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--text-color);
+        }
+
+        .neon {
+            color: var(--dark-mode-text-color);
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffcc00, 0 0 20px #ffcc00, 0 0 25px #ffcc00, 0 0 30px #ffcc00, 0 0 35px #ffcc00;
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffcc00, 0 0 20px #ffcc00, 0 0 25px #ffcc00, 0 0 30px #ffcc00, 0 0 35px #ffcc00;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffcc00, 0 0 40px #ffcc00, 0 0 50px #ffcc00, 0 0 60px #ffcc00, 0 0 70px #ffcc00;
+            }
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-button {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .menu-button button {
+            background-color: var(--header-bg-color);
+            color: var(--text-color);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Press Start 2P', cursive; /* Retro, gamified font */
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px #aaa;
+            transition: background-color 0.3s;
+        }
+
+        .menu-button button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: var(--bg-color);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .menu-content a:hover {
+            background-color: var(--header-bg-color);
+        }
+
+        .menu-button:hover .menu-content {
+            display: block;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            background-color: var(--bg-color);
+            padding: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .dark-mode {
+            background-color: var(--dark-mode-bg-color);
+            color: var(--dark-mode-text-color);
+        }
+
+        .dark-mode .header {
+            background-color: var(--dark-mode-header-bg-color);
+            color: var(--dark-mode-text-color);
+        }
+
+        .dark-mode .header h1 {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffcc00, 0 0 20px #ffcc00, 0 0 25px #ffcc00, 0 0 30px #ffcc00, 0 0 35px #ffcc00;
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        .dark-mode .menu-button button {
+            background-color: var(--dark-mode-header-bg-color);
+            color: var(--dark-mode-text-color);
+        }
+
+        .dark-mode .menu-content {
+            background-color: var(--dark-mode-bg-color);
+        }
+
+        .dark-mode .menu-content a {
+            color: var(--dark-mode-text-color);
+        }
+
+        .dark-mode .menu-content a:hover {
+            background-color: var(--dark-mode-accent-color);
+        }
+
+        .dark-mode .section {
+            background-color: var(--dark-mode-bg-color);
+            color: var(--dark-mode-text-color);
+        }
+
+        .toggle-dark-mode {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-dark-mode i {
+            margin-right: 10px;
+        }
+
+        .toggle-dark-mode.active {
+            color: var(--dark-mode-text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Learn - OpenSourceSphere</h1>
+        <div class="menu-container">
+            <button class="toggle-dark-mode" onclick="toggleDarkMode()">
+                <i id="mode-icon" class="fas fa-moon"></i>
+            </button>
+            <div class="menu-button">
+                <button>Menu</button>
+                <div class="menu-content">
+                    <a href="index.html">Home</a>
+                    <a href="learn.html">Learn</a>
+                    <a href="tutorials.html">Tutorials</a>
+                    <a href="news.html">News</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Learn with OpenSourceSphere</h2>
+            <p>Explore various topics and tutorials to enhance your knowledge about open-source technologies and development practices. Stay tuned for more content!</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const toggleButton = document.querySelector('.toggle-dark-mode');
+            toggleButton.classList.toggle('active');
+            const modeIcon = document.getElementById('mode-icon');
+            const header = document.querySelector('.header h1');
+            if (document.body.classList.contains('dark-mode')) {
+                header.classList.add('neon');
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+            } else {
+                header.classList.remove('neon');
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+            }
+        }
+    </script>
+</body>
+</html>
